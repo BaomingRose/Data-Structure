@@ -1,0 +1,6 @@
+﻿  BinaryTree.c
+d:\vs\binarytree\binarytree\binarytree.c(44): warning C4716: “BinaryTreeSize”: 必须返回一个值
+d:\vs\binarytree\binarytree\binarytree.c(48): warning C4716: “BinaryTreeLeafSize”: 必须返回一个值
+d:\vs\binarytree\binarytree\binarytree.c(56): warning C4716: “BinaryTreeFind”: 必须返回一个值
+d:\vs\binarytree\binarytree\binarytree.c(52): warning C4716: “BinaryTreeLevelKSize”: 必须返回一个值
+  BinaryTree.vcxproj -> D:\VS\BinaryTree\Debug\BinaryTree.exe
