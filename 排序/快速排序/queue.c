@@ -3,45 +3,38 @@
 #include <stdlib.h>
 #include <assert.h>
 
-void QueueInit(Queue* plist)
-{
+void QueueInit(Queue* plist) {
 	assert(plist);
 	plist->_head = NULL;
 	plist->_rear = NULL;
 }
 
-void QueueDestory(Queue* plist)
-{
+void QueueDestory(Queue* plist) { 
 	QueueNode * tmp;
-	while (plist->_head)
-	{
+	while (plist->_head) {
 		tmp = plist->_head;
 		plist->_head = plist->_head->_next;
 		free(tmp);
 	}
 }
 
-void QueuePop(Queue* plist)
-{
+void QueuePop(Queue* plist) {
 	assert(plist);
 
 	QueueNode * tmp;
-	if (plist->_head)
-	{
+	if (plist->_head) {
 		tmp = plist->_head;
 		plist->_head = plist->_head->_next;
 		free(tmp);
 	}
 }
 
-void QueuePush(Queue* plist, QuDataType x)
-{
+void QueuePush(Queue* plist, QuDataType x) {
 	QueueNode * cur = (QueueNode *)malloc(sizeof(QueueNode));
 	cur->_data = x;
 	cur->_next = NULL;
 
-	if (QueueIsEmpty(plist))
-	{
+	if (QueueIsEmpty(plist)) {
 		plist->_head = plist->_rear = cur;
 		return;
 	}
@@ -50,15 +43,12 @@ void QueuePush(Queue* plist, QuDataType x)
 	plist->_rear = cur;
 }
 
-int QueueIsEmpty(Queue* plist)
-{
+int QueueIsEmpty(Queue* plist) {
 	return plist->_head == NULL;
 }
 
-QuDataType QueueTop(Queue* plist)
-{
-	if (QueueIsEmpty(plist))
-	{
+QuDataType QueueTop(Queue* plist) {
+	if (QueueIsEmpty(plist)) {
 		return (QuDataType)0;
 	}
 	return plist->_head->_data;

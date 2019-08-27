@@ -4,6 +4,21 @@
 #include"queue.h"
 #define NUM 10000
 
+void InsertSort(int * src, int n) {
+	int i, j;
+	int tmp;
+
+	for (i = 1; i < n; i++) {
+		tmp = src[i];
+
+		for (j = i; j > 0 && src[j - 1] > tmp; j--)	{
+			src[j] = src[j - 1];
+		}
+
+		src[j] = tmp;
+	}
+}
+
 void swapArgs(int *pa, int *pb) {
 	int tmp;
 	tmp = *pa;
@@ -146,7 +161,7 @@ void dealQuickSort(int * src, int start, int end) {
 		dealQuickSort(src, mid + 1, end);
 	}
 	else {
-		//InsertSort(src + start, end - start + 1);
+		InsertSort(src + start, end - start + 1);
 	}
 }
 
@@ -193,7 +208,7 @@ void QuickSortNonR(int * src, int n) {
 void printArray(int * src, int n) {
 	int i;
 	for (i = 0; i < n; i++) {
-		printf("%d ", src[i]);
+		printf("%-4d ", src[i]);
 	}
 	putchar('\n');
 }

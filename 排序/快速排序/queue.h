@@ -3,8 +3,7 @@
 
 typedef int QuDataType;
 
-typedef struct QueueNode
-{
+typedef struct QueueNode {
 	QuDataType _data;
 	struct QueueNode* _next;
 }QueueNode;
