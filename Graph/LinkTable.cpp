@@ -2,6 +2,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <queue>
 using namespace std;
 
 //构造边，起点到终点，还有权值，起点有必要吗（还是有必要的），
@@ -51,6 +52,28 @@ public:
 			}
 		}
 	}
+
+	void DFS(const V& vertex) {
+		int srcIndex = getIndexOfVertex(vertex);
+		if (srcIndex == -1) {
+			return;
+		}
+		
+		vector<bool> visited;
+		visited.resize(_vertex.size(), false);
+		_DFS(srcIndex, visited);
+	}
+
+	void BFS(const V& vertex) {
+		int srcIndex = getIndexOfVertex(vertex);
+		if (srcIndex == -1) {
+			return;
+		}
+
+		vector<bool> visited;
+		visited.resize(_vertex.size(), false);
+		_BFS(srcIndex, visited);
+	}
 private:
 	int getIndexOfVertex(const V& vertex) {
 		if (_vertexIndexMap.find(vertex) == _vertexIndexMap.end()) {
@@ -58,6 +81,44 @@ private:
 		}
 
 		return _vertexIndexMap[vertex];
+	}
+
+	void _DFS(int srcIndex, vector<bool>& visited) {
+		visited[srcIndex] = true;
+		cout << _vertex[srcIndex] << "->";
+		Edge<W>* cur = _edge[srcIndex];
+		while (cur) {
+			if (visited[cur->_des] == false) {
+				_DFS(cur->_des, visited);
+			}
+			cur = cur->_next;
+		}
+	}
+
+	void _BFS(int srcIndex, vector<bool>& visited) {
+		queue<int> q;
+		q.push(srcIndex);
+		visited[srcIndex] = true;
+
+		while (!q.empty()) {
+			int cur_level = q.size();
+			//分层打印
+			for (int i = 0; i < cur_level; ++i) {
+				int front = q.front();
+				cout << _vertex[front] << "->";
+				Edge<W>* cur = _edge[front];
+				while (cur) {
+					if (visited[cur->_des] == false) {
+						//push之后就要改标记了，不然可能又被其他点给push一遍
+						q.push(cur->_des);
+						visited[cur->_des] = true;
+					}
+					cur = cur->_next;
+				}
+				q.pop();
+			}
+			cout << endl;
+		}
 	}
 private:
 	vector<V> _vertex;
@@ -76,6 +137,9 @@ int main() {
 	g.addEdge("durant", "tomthion", 90);
 
 	g.print_all_edges();
+	g.DFS("curry");
+	cout << endl;
+	g.BFS("curry");
 
 	return 0;
 }
