@@ -114,13 +114,18 @@ int main() {
 
 #if 0
 //²âÊÔÓÃÀý
-ab
-abb
-abaab
-ababbbbbbbbb
-bbbbbbbbbbbbbbbbbbbbbbbbbbb
-baaaaabbbb(´íÎóÓÃÀý£©
-a##b#(´íÎóÓÃÀý£©
-abcdefg(´íÎóÓÃÀý£©
-ABCDEFG(´íÎóÓÃÀý£©
+i
+a
+B
+i+i
+i+
++++
+i*i
+i*i*i
+i*
+(i)
+(i+i)*i
+(i+i)*(i+i)
+i+i*i
+(*i+
 #endif
